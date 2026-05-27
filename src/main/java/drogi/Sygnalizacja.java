@@ -17,7 +17,7 @@ public class Sygnalizacja extends Skrzyzowanie{
     }
 
     public void zmianaSwiatla() {
-        // Prosta logicznie zmiana stanu
+        //  zmiana stanu
         if (this.aktualneSwiatlo == StanSwiatel.Zielone) {
             this.aktualneSwiatlo = StanSwiatel.Czerwone;
         } else {
