@@ -7,6 +7,8 @@ int suma = liczbaA + liczbaB;
     System.out.println("Wynik dodawania " + liczbaA + " + " + liczbaB + " to: " + suma);
 System.out.println("Dziala :DD");
 
+System.out.println("Test brancha");
+
 }
 
 
