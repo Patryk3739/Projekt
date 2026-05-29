@@ -14,14 +14,11 @@ public class Statystyki {
     private int liczbaCiezarowek;
     private int liczbaLaczna;
 
-    private int aktualnaTura;
-
     public Statystyki(){
         liczbaCiezarowek =0;
         liczbaSamochodow=0;
         liczbaRowerow=0;
         liczbaLaczna=0;
-        aktualnaTura=0;
         try (PrintWriter writer = new PrintWriter(new FileWriter(nazwaPliku))) {
             writer.println("Tura;Samochody;Ciezarowki;Rowery;Lacznie");
         } catch (IOException e) {
@@ -50,11 +47,10 @@ public class Statystyki {
     liczbaLaczna = liczbaCiezarowek+liczbaRowerow+liczbaSamochodow;
     }
 
-    public void stworzRaport(){
+    public void stworzRaport(int aktualnaTura){
         try (PrintWriter writer = new PrintWriter(new FileWriter(nazwaPliku, true))) {
 
             writer.println(aktualnaTura + ";" + liczbaSamochodow + ";" + liczbaCiezarowek + ";" + liczbaRowerow + ";" + liczbaLaczna);
-            aktualnaTura++;
 
         } catch (IOException e) {
             System.err.println("Błąd podczas zapisu do pliku CSV: " + e.getMessage());
