@@ -5,6 +5,8 @@ import drogi.Pojazd;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Main {
     private int pojazdy;
     private int skrzyzowania;
