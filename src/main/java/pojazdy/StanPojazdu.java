@@ -1,4 +1,4 @@
-package brumbrum;
+package pojazdy;
 
 public enum StanPojazdu {
     W_ruchu,

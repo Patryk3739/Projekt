@@ -1,4 +1,5 @@
 package drogi;
+import pojazdy.Pojazd;
 
 public class Sygnalizacja extends Skrzyzowanie{
     private StanSwiatel aktualneSwiatlo;

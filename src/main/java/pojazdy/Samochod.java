@@ -1,5 +1,5 @@
-package brumbrum;
-
+package pojazdy;
+import drogi.Skrzyzowanie;
 public class Samochod extends Pojazd {
 
     public Samochod(int wspolrzedna_x, int wspolrzedna_y){

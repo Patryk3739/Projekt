@@ -1,4 +1,7 @@
-package brumbrum;
+package pojazdy;
+
+import drogi.Kierunki;
+import drogi.Skrzyzowanie;
 
 public abstract class Pojazd {
     private int rozmiar;

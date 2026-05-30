@@ -1,6 +1,6 @@
 package silnik;
 
-import drogi.Pojazd;
+import pojazdy.Pojazd;
 
 import java.util.ArrayList;
 import java.util.List;

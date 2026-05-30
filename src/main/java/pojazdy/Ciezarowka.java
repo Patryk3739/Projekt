@@ -1,9 +1,9 @@
-package brumbrum;
-
+package pojazdy;
+import drogi.Skrzyzowanie;
 public class Ciezarowka extends Pojazd {
 
-    Ciezarowka(int wspolrzedna_x, int wspolrzedna_y){
-
+    public Ciezarowka(int wspolrzedna_x, int wspolrzedna_y){
+        super(wspolrzedna_x, wspolrzedna_y);
     }
 
     private void jedz() {

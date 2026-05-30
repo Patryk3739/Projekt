@@ -1,4 +1,5 @@
 package drogi;
+import pojazdy.Pojazd;
 
 public class Rownorzedne extends Skrzyzowanie {
     public Rownorzedne(int x, int y) {

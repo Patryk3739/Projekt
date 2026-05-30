@@ -1,9 +1,9 @@
-package brumbrum;
-
+package pojazdy;
+import drogi.Skrzyzowanie;
 public class Rower extends Pojazd {
 
-    Rower(int wspolrzedna_x, int wspolrzedna_y){
-
+    public Rower(int wspolrzedna_x, int wspolrzedna_y){
+        super(wspolrzedna_x, wspolrzedna_y);
     }
 
     private void jedz() {

@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.util.List;
 import pojazdy.Pojazd;
-
+import pojazdy.Samochod;
+import pojazdy.Rower;
+import pojazdy.Ciezarowka;
 public class Statystyki {
     private String nazwaPliku = "statystyki.csv";
 
