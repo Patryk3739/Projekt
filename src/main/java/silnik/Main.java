@@ -14,6 +14,7 @@ public class Main {
     private int aktualnaTura;
     private List<Pojazd> listaPojazdow;
     private Mapa mapa;
+    private Statystyki statystyki;
 
     public Main(){
         pojazdy=0;
@@ -27,17 +28,18 @@ public class Main {
     public void zacznijSymulacje(){
         System.out.println("Rozpoczeto symulacje.");
         pojazdy = 10;
-        mapa = GenerowanieSymulacji.stworzMape(20,400);
+        GenerowanieSymulacji generator = new GenerowanieSymulacji();
+        mapa = generator.stworzMape(20,400);
         int wymiar = mapa.getWymiar();
         skrzyzowania = wymiar*wymiar;
 
         for (int i=0;i<pojazdy;i++){
-            Pojazd p = GenerowanieSymulacji.losujPojazd(wymiar);
+            Pojazd p = generator.losujPojazd(wymiar);
             listaPojazdow.add(p);
         }
     }
 
-    public void wykonajTure(Statystyki statystyki){
+    public void wykonajTure(){
         aktualnaTura++;
         mapa.aktualizujSwiatla();
         for (int i = 0;i < listaPojazdow.size();i++){
@@ -51,7 +53,7 @@ public class Main {
 
     }
 
-    public boolean czyMozliwyRuch(Statystyki statystyki){
+    public boolean czyMozliwyRuch(){
         for (Pojazd p:listaPojazdow){
             if (mapa.czyWolne(p)){
                 return true;
@@ -77,7 +79,7 @@ public class Main {
     return listaPojazdow.isEmpty();
     }
 
-    public void zakonczSymulacje(Statystyki statystyki){
+    public void zakonczSymulacje(){
         System.out.println("Zakonczono symulacje.");
         statystyki.stworzRaport(aktualnaTura);
 
@@ -86,14 +88,13 @@ public class Main {
     public static void main(String[] args) {
 
         Main symulacja = new Main();
-        Statystyki statystyki = new Statystyki();
 
         symulacja.zacznijSymulacje();
 
-        while(!symulacja.czyKoniecSymulacji() && symulacja.czyMozliwyRuch(statystyki)){
-            symulacja.wykonajTure(statystyki);
+        while(!symulacja.czyKoniecSymulacji() && symulacja.czyMozliwyRuch()){
+            symulacja.wykonajTure();
         }
 
-        symulacja.zakonczSymulacje(statystyki);
+        symulacja.zakonczSymulacje();
     }
 }
