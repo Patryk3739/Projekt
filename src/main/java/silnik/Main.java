@@ -21,7 +21,10 @@ public class Main {
         listaPojazdow = new ArrayList<>();
     }
 
-    public void zacznijSymulacje(){}
+    public void zacznijSymulacje(){
+        System.out.println("Rozpoczeto symulacje.");
+
+    }
 
     public void wykonajTure(){}
 
@@ -36,5 +39,13 @@ public class Main {
     public static void main(String[] args) {
 
         Main symulacja = new Main();
+
+        symulacja.zacznijSymulacje();
+
+        while(!symulacja.czyKoniecSymulacji()){
+            symulacja.wykonajTure();
+        }
+
+        symulacja.zakonczSymulacje();
     }
 }
