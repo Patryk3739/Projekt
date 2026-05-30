@@ -4,21 +4,21 @@ import drogi.Skrzyzowanie;
 import drogi.Sygnalizacja;
 
 public class Mapa {
-    private int wymiary;
+    private int wymiar;
     private Skrzyzowanie[][] mapa;
 
     public Mapa(){
-        wymiary =10;
-        mapa = new Skrzyzowanie[wymiary][wymiary];
+        wymiar =10;
+        mapa = new Skrzyzowanie[wymiar][wymiar];
     }
 
     public Skrzyzowanie pobierzWspolrzedneSkrzyz(int x, int y){
-    return mapa[x][y];
+        return mapa[x][y];
     }
 
     public void aktualizujSwiatla(){
-        for (int i=0; i< wymiary;i++){
-            for (int j=0;j<wymiary;j++){
+        for (int i=0; i< wymiar;i++){
+            for (int j=0;j<wymiar;j++){
                 Skrzyzowanie s = mapa[i][j];
 
                 if (s instanceof Sygnalizacja swiatla){
@@ -29,4 +29,7 @@ public class Mapa {
 
     }
 
+    public int getWymiar() {
+        return wymiar;
+    }
 }
