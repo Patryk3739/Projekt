@@ -40,8 +40,8 @@ public class Main {
         mapa.aktualizujSwiatla();
         for (int i = 0;i < listaPojazdow.size();i++){
             Pojazd p = listaPojazdow.get(i);
-            int x = p.getwspolrzedne_x;
-            int y = p.getwspolrzedne_y;
+            int x = p.getWspolrzedna_x();
+            int y = p.getWspolrzedna_y();
 
             Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
 
@@ -57,8 +57,8 @@ public class Main {
     public boolean czyMozliwyRuch(){
         for (Pojazd p:listaPojazdow){
 
-            int x = p.getwspolrzedne_x;
-            int y = p.getwspolrzedne_y;
+            int x = p.getWspolrzedna_x();
+            int y = p.getWspolrzedna_y();
 
             Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
 
