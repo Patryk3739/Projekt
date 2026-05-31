@@ -14,7 +14,18 @@ public abstract class Pojazd {
         this.wspolrzedna_x = wspolrzedna_x;
         this.wspolrzedna_y = wspolrzedna_y;
     }
-
+    public int getWspolrzedna_x(){
+        return wspolrzedna_x;
+    }
+    public int getWspolrzedna_y(){
+        return wspolrzedna_y;
+    }
+    public void setWspolrzedna_x(int wspolrzedna_x){
+        this.wspolrzedna_x=wspolrzedna_x;
+    }
+    public void setWspolrzedna_y(int wspolrzedna_y){
+        this.wspolrzedna_y=wspolrzedna_y;
+    }
     private void jedz() {
 
     }
