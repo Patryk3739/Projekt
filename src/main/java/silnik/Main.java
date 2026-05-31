@@ -1,16 +1,13 @@
 package silnik;
 
+import drogi.Skrzyzowanie;
 import pojazdy.Pojazd;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Main {
     private int pojazdy;
-    private int skrzyzowania;
     private int aktualnaTura;
     private List<Pojazd> listaPojazdow;
     private Mapa mapa;
@@ -18,10 +15,9 @@ public class Main {
 
     public Main(){
         pojazdy=0;
-        skrzyzowania=0;
         aktualnaTura=0;
         mapa=null;
-
+        statystyki=new Statystyki();
         listaPojazdow = new ArrayList<>();
     }
 
@@ -31,7 +27,6 @@ public class Main {
         GenerowanieSymulacji generator = new GenerowanieSymulacji();
         mapa = generator.stworzMape(20,400);
         int wymiar = mapa.getWymiar();
-        skrzyzowania = wymiar*wymiar;
 
         for (int i=0;i<pojazdy;i++){
             Pojazd p = generator.losujPojazd(wymiar);
@@ -40,11 +35,17 @@ public class Main {
     }
 
     public void wykonajTure(){
+
         aktualnaTura++;
         mapa.aktualizujSwiatla();
         for (int i = 0;i < listaPojazdow.size();i++){
             Pojazd p = listaPojazdow.get(i);
-            p.jedzNastepnaTure();
+            int x = p.getwspolrzedne_x;
+            int y = p.getwspolrzedne_y;
+
+            Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
+
+            p.jedzNastepnaTure(skrzyzowanie);
         }
         usunPojazd();
 
@@ -55,7 +56,13 @@ public class Main {
 
     public boolean czyMozliwyRuch(){
         for (Pojazd p:listaPojazdow){
-            if (mapa.czyWolne(p)){
+
+            int x = p.getwspolrzedne_x;
+            int y = p.getwspolrzedne_y;
+
+            Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
+
+            if (skrzyzowanie.czyWolne(p)){
                 return true;
             }
         }
