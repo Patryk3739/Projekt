@@ -3,8 +3,7 @@ import pojazdy.Pojazd;
 
 public class Rownorzedne extends Skrzyzowanie {
     public Rownorzedne(int x, int y) {
-        this.wspolrzednaX = x;
-        this.wspolrzednaY = y;
+        super(x, y);
     }
 
     public Boolean regulaPrawejReki(Pojazd p) {
