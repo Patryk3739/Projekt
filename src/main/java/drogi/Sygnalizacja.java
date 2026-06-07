@@ -7,6 +7,10 @@ public class Sygnalizacja extends Skrzyzowanie{
     public Sygnalizacja(int x, int y) {
         super(x, y);
     }
+    @Override
+    public Boolean czyWolne(Pojazd p) {
+        return czyZielone(p);
+    }
 
     public void swiatla(int x, int y) {
     }
