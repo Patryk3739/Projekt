@@ -9,7 +9,9 @@ public abstract class Skrzyzowanie {
     private int wspolrzednaX;  //atributy klasy
     private int wspolrzednaY;
 
-    private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe;
+    public java.util.Map<Kierunki, java.util.List<Pojazd>> getkolejkiKierunkowe() {
+        return this.kolejkiKierunkowe;
+    }
 
     public Skrzyzowanie(int x, int y) {
         this.wspolrzednaX = x;
