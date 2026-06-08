@@ -15,6 +15,9 @@ public abstract class Pojazd {
     protected Mapa mapa;
 
     Random random = new Random();
+    public Kierunki getAktualnyKierunek() {
+        return this.aktualny_kierunek;
+    }
 
     public Pojazd(int wspolrzedna_x, int wspolrzedna_y, int rozmiar, Mapa mapa){
         this.wspolrzedna_x = wspolrzedna_x;
