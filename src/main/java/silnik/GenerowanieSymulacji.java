@@ -11,7 +11,7 @@ import pojazdy.Ciezarowka;
 
 public class GenerowanieSymulacji {
         private static Random random = new Random();
-    public static Mapa stworzMape(int wymiary, int skrzyzowania){
+    public static Mapa stworzMape(int wymiary){
         Mapa mapa = new Mapa();
         int wymiaryMapy = mapa.getWymiar();
 
