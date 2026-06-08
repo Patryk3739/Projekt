@@ -1,6 +1,6 @@
 package silnik;
 
-import drogi.Skrzyzowanie;
+import skrzyzowania.Skrzyzowanie;
 import pojazdy.Pojazd;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package silnik;
 
-import drogi.Skrzyzowanie;
-import drogi.Sygnalizacja;
+import skrzyzowania.Skrzyzowanie;
+import skrzyzowania.Sygnalizacja;
 
 public class Mapa {
     private int wymiar;

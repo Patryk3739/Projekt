@@ -1,4 +1,4 @@
-package drogi;
+package skrzyzowania;
 import pojazdy.Pojazd;
 
 public class Rownorzedne extends Skrzyzowanie {
@@ -16,7 +16,7 @@ public class Rownorzedne extends Skrzyzowanie {
         /* przeglądamy wszystkie 4 kolejki(kierunki) na skrzyżowaniu
          żeby dowiedzieć się, w której kolejce znajduje sie pojazd*/
         for (Kierunki k : Kierunki.values()) {
-            java.util.List<Pojazd> kolejka = kolejkiKierunkowe.get(k);
+            java.util.List<Pojazd> kolejka = getkolejkiKierunkowe().get(k);
             if (kolejka != null && kolejka.contains(p)) {
                 skadNadjezdza = k; //jakby tutaj stoi
                 break;
@@ -36,7 +36,7 @@ public class Rownorzedne extends Skrzyzowanie {
         };
 
         // sprawdzenie, czy po prawej jest pojazd
-        java.util.List<Pojazd> kolejkaZPrawej = kolejkiKierunkowe.get(prawaStrona);
+        java.util.List<Pojazd> kolejkaZPrawej = getkolejkiKierunkowe().get(prawaStrona);
 
         if (kolejkaZPrawej != null && !kolejkaZPrawej.isEmpty()) {
             return false; // ustępuje

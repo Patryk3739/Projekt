@@ -1,9 +1,9 @@
 package pojazdy;
 
-import drogi.Kierunki;
-import drogi.Skrzyzowanie;
+import skrzyzowania.Kierunki;
+import skrzyzowania.Skrzyzowanie;
 import silnik.Mapa;
-import pojazdy.StanPojazdu;
+
 import java.util.Random;
 
 public abstract class Pojazd {

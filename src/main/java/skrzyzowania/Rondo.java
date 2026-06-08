@@ -1,4 +1,4 @@
-package drogi;
+package skrzyzowania;
 import pojazdy.Pojazd;
 public class Rondo extends Skrzyzowanie{
     public Rondo(int x, int y) {

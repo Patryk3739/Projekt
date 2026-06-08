@@ -1,5 +1,4 @@
 package pojazdy;
-import drogi.Skrzyzowanie;
 import silnik.Mapa;
 
 public class Samochod extends Pojazd {
