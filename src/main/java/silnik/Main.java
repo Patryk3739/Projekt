@@ -33,6 +33,9 @@ public class Main {
             Pojazd p = generator.losujPojazd(wymiarMapy,mapa);
             listaPojazdow.add(p);
         }
+
+        statystyki.zbierzDane(listaPojazdow);
+        statystyki.stworzRaport(0);
     }
 
     public void wykonajTure(){
@@ -45,6 +48,7 @@ public class Main {
 
         usunPojazd();
         statystyki.zbierzDane(listaPojazdow);
+        statystyki.stworzRaport(aktualnaTura);
     }
 
     public boolean czyMozliwyRuch(){
@@ -80,8 +84,6 @@ public class Main {
 
     public void zakonczSymulacje(){
         System.out.println("Zakonczono symulacje.");
-        statystyki.stworzRaport(aktualnaTura);
-
     }
 
     public static void main(String[] args) {
