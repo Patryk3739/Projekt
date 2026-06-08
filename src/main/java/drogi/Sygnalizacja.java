@@ -1,12 +1,15 @@
 package drogi;
+import pojazdy.Pojazd;
 
 public class Sygnalizacja extends Skrzyzowanie{
-    private StanSwiatel aktualneSwiatlo;
+    private StanSwiatel aktualneSwiatlo = StanSwiatel.Czerwone;
 
     public Sygnalizacja(int x, int y) {
-        this.wspolrzednaX = x;
-        this.wspolrzednaY = y;
-        this.aktualneSwiatlo = StanSwiatel.Czerwone; // startowy stan swiatel
+        super(x, y);
+    }
+    @Override
+    public Boolean czyWolne(Pojazd p) {
+        return czyZielone(p);
     }
 
     public void swiatla(int x, int y) {

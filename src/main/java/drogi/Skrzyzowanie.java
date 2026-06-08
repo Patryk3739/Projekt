@@ -1,15 +1,27 @@
 package drogi;
+import pojazdy.Pojazd;
 
 import java.util.List;
 import java.util.Map;
 
 public abstract class Skrzyzowanie {
-    protected int pojemnosc;
-    protected int wspolrzednaX;  //atributy klasy
-    protected int wspolrzednaY;
+    private int pojemnosc;
+    private int wspolrzednaX;  //atributy klasy
+    private int wspolrzednaY;
 
     protected Map<Kierunki, List<Pojazd>> kolejkiKierunkowe;
 
+    public Skrzyzowanie(int x, int y) {
+        this.wspolrzednaX = x;
+        this.wspolrzednaY = y;
+    }
+    public int getWspolrzednaX() {
+        return wspolrzednaX;
+    }
+
+    public int getWspolrzednaY() {
+        return wspolrzednaY;
+    }
 
     public Boolean czyWolne(Pojazd p) {
         return true;
