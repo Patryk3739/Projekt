@@ -7,13 +7,8 @@ public class Mapa {
     private int wymiar;
     private Skrzyzowanie[][] mapa;
 
-    public Mapa(){
-        wymiar =10;
-        mapa = new Skrzyzowanie[wymiar][wymiar];
-    }
-
     public Mapa(int wymiar){
-        wymiar=10;
+        this.wymiar=wymiar;
         mapa = new Skrzyzowanie[wymiar][wymiar];
     }
 
