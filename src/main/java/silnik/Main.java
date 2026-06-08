@@ -1,20 +1,22 @@
 package silnik;
 
+import pojazdy.StanPojazdu;
 import skrzyzowania.Skrzyzowanie;
 import pojazdy.Pojazd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Main {
-    private int pojazdy;
+    private int poczatkowaLiczbaPojazdow;
     private int aktualnaTura;
     private List<Pojazd> listaPojazdow;
     private Mapa mapa;
     private Statystyki statystyki;
 
-    public Main(){
-        pojazdy=0;
+    public Main(int liczbaPojazdowNaStart){
+        poczatkowaLiczbaPojazdow=liczbaPojazdowNaStart;
         aktualnaTura=0;
         mapa=null;
         statystyki=new Statystyki();
@@ -22,52 +24,41 @@ public class Main {
     }
 
     public void zacznijSymulacje(){
-        System.out.println("Rozpoczeto symulacje.");
-        pojazdy = 10;
+        System.out.println("Rozpoczeto symulacje z liczba pojazdow: "+poczatkowaLiczbaPojazdow+".");
         GenerowanieSymulacji generator = new GenerowanieSymulacji();
-        mapa = generator.stworzMape(20);
-        int wymiar = mapa.getWymiar();
 
-        for (int i=0;i<pojazdy;i++){
-            Pojazd p = generator.losujPojazd(wymiar,mapa);
+        int wymiarMapy = 20;
+        mapa = generator.stworzMape(wymiarMapy);
+
+        for (int i=0;i<poczatkowaLiczbaPojazdow;i++){
+            Pojazd p = generator.losujPojazd(wymiarMapy,mapa);
             listaPojazdow.add(p);
         }
+
+        statystyki.zbierzDane(listaPojazdow);
+        statystyki.stworzRaport(0);
     }
 
     public void wykonajTure(){
-
         aktualnaTura++;
         mapa.aktualizujSwiatla();
-        for (int i = 0;i < listaPojazdow.size();i++){
-            Pojazd p = listaPojazdow.get(i);
-            int x = p.getWspolrzedna_x();
-            int y = p.getWspolrzedna_y();
 
-            Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
-
+        for (Pojazd p: listaPojazdow){
             p.jedzNastepnaTure();
         }
+
         usunPojazd();
-
         statystyki.zbierzDane(listaPojazdow);
-
-
+        statystyki.stworzRaport(aktualnaTura);
     }
 
     public boolean czyMozliwyRuch(){
         for (Pojazd p:listaPojazdow){
-
-            int x = p.getWspolrzedna_x();
-            int y = p.getWspolrzedna_y();
-
-            Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
-
-            if (skrzyzowanie.czyWolne(p)){
+            if (p.getStanPojazdu() == StanPojazdu.W_ruchu){
                 return true;
             }
         }
         System.out.println("Mapa zostala zakorkowana. Koniec symulacji.");
-        statystyki.stworzRaport(aktualnaTura);
         return false;
     }
 
@@ -88,13 +79,18 @@ public class Main {
 
     public void zakonczSymulacje(){
         System.out.println("Zakonczono symulacje.");
-        statystyki.stworzRaport(aktualnaTura);
-
     }
 
     public static void main(String[] args) {
 
-        Main symulacja = new Main();
+        Random losowanie = new Random();
+
+        int minPojazdow = 10;
+        int maxPojazdow= 50;
+
+        int wylosowanaLiczbaPojazdow = losowanie.nextInt(minPojazdow,maxPojazdow+1);
+
+        Main symulacja = new Main(wylosowanaLiczbaPojazdow);
 
         symulacja.zacznijSymulacje();
 
