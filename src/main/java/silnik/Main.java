@@ -1,5 +1,6 @@
 package silnik;
 
+import pojazdy.StanPojazdu;
 import skrzyzowania.Skrzyzowanie;
 import pojazdy.Pojazd;
 
@@ -53,13 +54,7 @@ public class Main {
 
     public boolean czyMozliwyRuch(){
         for (Pojazd p:listaPojazdow){
-
-            int x = p.getWspolrzedna_x();
-            int y = p.getWspolrzedna_y();
-
-            Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
-
-            if (skrzyzowanie.czyWolne(p)){
+            if (p.getStanPojazdu() == StanPojazdu.W_ruchu){
                 return true;
             }
         }
