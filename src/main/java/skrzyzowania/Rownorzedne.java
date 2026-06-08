@@ -1,4 +1,4 @@
-package drogi;
+package skrzyzowania;
 import pojazdy.Pojazd;
 
 public class Rownorzedne extends Skrzyzowanie {

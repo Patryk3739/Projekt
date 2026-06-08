@@ -1,10 +1,10 @@
 package silnik;
-import drogi.Skrzyzowanie;
+import skrzyzowania.Skrzyzowanie;
 import pojazdy.Pojazd;
 import java.util.Random;
-import drogi.Rondo;
-import drogi.Rownorzedne;
-import drogi.Sygnalizacja;
+import skrzyzowania.Rondo;
+import skrzyzowania.Rownorzedne;
+import skrzyzowania.Sygnalizacja;
 import pojazdy.Samochod;
 import pojazdy.Rower;
 import pojazdy.Ciezarowka;

@@ -1,4 +1,4 @@
-package drogi;
+package skrzyzowania;
 import pojazdy.Pojazd;
 
 import java.util.List;
@@ -9,7 +9,7 @@ public abstract class Skrzyzowanie {
     private int wspolrzednaX;  //atributy klasy
     private int wspolrzednaY;
 
-    protected Map<Kierunki, List<Pojazd>> kolejkiKierunkowe;
+    private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe;
 
     public Skrzyzowanie(int x, int y) {
         this.wspolrzednaX = x;
