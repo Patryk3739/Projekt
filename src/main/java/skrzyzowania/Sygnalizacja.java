@@ -11,9 +11,7 @@ public class Sygnalizacja extends Skrzyzowanie{
     public Boolean czyWolne(Pojazd p) {
         return czyZielone(p);
     }
-
-    public void swiatla(int x, int y) {
-    }
+    
 
     public Boolean czyZielone(Pojazd p) {
         return aktualneSwiatlo == StanSwiatel.Zielone;
