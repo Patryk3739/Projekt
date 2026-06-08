@@ -25,11 +25,11 @@ public class Main {
         System.out.println("Rozpoczeto symulacje.");
         pojazdy = 10;
         GenerowanieSymulacji generator = new GenerowanieSymulacji();
-        mapa = generator.stworzMape(20,400);
+        mapa = generator.stworzMape(20);
         int wymiar = mapa.getWymiar();
 
         for (int i=0;i<pojazdy;i++){
-            Pojazd p = generator.losujPojazd(wymiar);
+            Pojazd p = generator.losujPojazd(wymiar,mapa);
             listaPojazdow.add(p);
         }
     }
@@ -45,7 +45,7 @@ public class Main {
 
             Skrzyzowanie skrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(x,y);
 
-            p.jedzNastepnaTure(skrzyzowanie);
+            p.jedzNastepnaTure();
         }
         usunPojazd();
 
