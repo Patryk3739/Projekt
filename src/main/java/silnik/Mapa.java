@@ -12,6 +12,11 @@ public class Mapa {
         mapa = new Skrzyzowanie[wymiar][wymiar];
     }
 
+    public Mapa(int wymiar){
+        wymiar=10;
+        mapa = new Skrzyzowanie[wymiar][wymiar];
+    }
+
     public Skrzyzowanie pobierzWspolrzedneSkrzyz(int x, int y){
         return mapa[x][y];
     }
@@ -32,4 +37,8 @@ public class Mapa {
     public int getWymiar() {
         return wymiar;
     }
+
+    public void wstawSkrzyzowanie(int x, int y, Skrzyzowanie s){
+        mapa[x][y] = s;
+    };
 }
