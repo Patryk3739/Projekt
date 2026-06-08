@@ -1,6 +1,7 @@
 package skrzyzowania;
 import pojazdy.Pojazd;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ public abstract class Skrzyzowanie {
     private int pojemnosc;
     private int wspolrzednaX;  //atributy klasy
     private int wspolrzednaY;
+    private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe = new HashMap<>();
 
     public java.util.Map<Kierunki, java.util.List<Pojazd>> getkolejkiKierunkowe() {
         return this.kolejkiKierunkowe;
