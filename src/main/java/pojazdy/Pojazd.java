@@ -10,30 +10,30 @@ public abstract class Pojazd {
     private int rozmiar;
     private int wspolrzedna_x;
     private int wspolrzedna_y;
-    private StanPojazdu aktualny_stan_pojazdu;
-    private Kierunki aktualny_kierunek;
+    private StanPojazdu aktualnyStanPojazdu;
+    private Kierunki aktualnyKierunek;
     protected Mapa mapa;
 
     Random random = new Random();
     public Kierunki getAktualnyKierunek() {
-        return this.aktualny_kierunek;
+        return this.aktualnyKierunek;
     }
 
     public Pojazd(int wspolrzedna_x, int wspolrzedna_y, int rozmiar, Mapa mapa){
         this.wspolrzedna_x = wspolrzedna_x;
         this.wspolrzedna_y = wspolrzedna_y;
         this.rozmiar = rozmiar;
-        this.aktualny_stan_pojazdu = StanPojazdu.W_ruchu;
+        this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
         this.mapa = mapa;
         int losowy_kierunek = random.nextInt(4);
         switch(losowy_kierunek){
-            case 0: this.aktualny_kierunek = Kierunki.Gora;
+            case 0: this.aktualnyKierunek = Kierunki.Gora;
                 break;
-            case 1: this.aktualny_kierunek = Kierunki.Prawo;
+            case 1: this.aktualnyKierunek = Kierunki.Prawo;
                 break;
-            case 2: this.aktualny_kierunek = Kierunki.Dol;
+            case 2: this.aktualnyKierunek = Kierunki.Dol;
                 break;
-            case 3: this.aktualny_kierunek = Kierunki.Lewo;
+            case 3: this.aktualnyKierunek = Kierunki.Lewo;
                 break;
         }
     }
@@ -49,7 +49,7 @@ public abstract class Pojazd {
     }
 
     private void jedz() {
-        switch(aktualny_kierunek) {
+        switch(aktualnyKierunek) {
             case Gora:
                 wspolrzedna_y++;
                 break;
@@ -68,11 +68,11 @@ public abstract class Pojazd {
     public void jedzNastepnaTure() {
         Skrzyzowanie s = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzedna_x, this.wspolrzedna_y);
         if (s.czyWolne(this)){
-            this.aktualny_stan_pojazdu = StanPojazdu.W_ruchu;
+            this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
             jedz();
         }
         else{
-            this.aktualny_stan_pojazdu = StanPojazdu.W_korku;
+            this.aktualnyStanPojazdu = StanPojazdu.W_korku;
         }
     }
 
@@ -83,14 +83,14 @@ public abstract class Pojazd {
     }
 
     public void setZmianaKierunku(Kierunki zmianaKierunku){
-        this.aktualny_kierunek = zmianaKierunku;
+        this.aktualnyKierunek = zmianaKierunku;
     }
 
-    public StanPojazdu getAktualny_stan_pojazdu(){
-        return this.aktualny_stan_pojazdu;
+    public StanPojazdu getStanPojazdu(){
+        return this.aktualnyStanPojazdu;
     }
     
-    public void setAktualny_stan_pojazdu(StanPojazdu nowy_aktualny_Stan){
-        this.aktualny_stan_pojazdu = nowy_aktualny_Stan;
+    public void setStanPojazdu(StanPojazdu nowyStan){
+        this.aktualnyStanPojazdu = nowyStan;
     }
 }

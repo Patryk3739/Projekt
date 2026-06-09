@@ -1,0 +1,4 @@
+package skrzyzowania;
+
+class RondoTest {
+}
