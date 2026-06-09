@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - name: Pobranie kodu z repozytorium
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Instalacja Javy (JDK)
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
