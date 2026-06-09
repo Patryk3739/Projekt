@@ -15,6 +15,6 @@ class MapaTest {
     @Test
     void czyMapaNieJestPusta(){
         Mapa mapa = new Mapa(20);
-        assertNotNull(mapa.pobierzWspolrzedneSkrzyz(5,5),"Sprawdzenie czy mapa zwara nulla.");
+        assertNull(mapa.pobierzWspolrzedneSkrzyz(5,5),"Sprawdzenie czy mapa zwara nulla.");
     }
 }

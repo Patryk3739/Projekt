@@ -1,0 +1,4 @@
+package pojazdy;
+
+class PojazdTest {
+}

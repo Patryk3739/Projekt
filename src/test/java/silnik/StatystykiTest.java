@@ -40,7 +40,7 @@ class StatystykiTest {
 
         Pojazd p1 = new Samochod(1,1, mapa);
 
-        p1.setStanPojazdu(p1.StanPojazdu.W_korku);
+        p1.setStanPojazdu(StanPojazdu.W_korku);
 
         listaTestowa2.add(p1);
 
