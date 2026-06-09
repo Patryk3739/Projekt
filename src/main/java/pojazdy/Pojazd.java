@@ -82,4 +82,12 @@ public abstract class Pojazd {
     public void setZmianaKierunku(Kierunki zmianaKierunku){
         this.aktualny_kierunek = zmianaKierunku;
     }
+
+    public StanPojazdu getAktualny_stan_pojazdu(){
+        return this.aktualny_stan_pojazdu;
+    }
+    
+    public void setAktualny_stan_pojazdu(StanPojazdu nowy_aktualny_Stan){
+        this.aktualny_stan_pojazdu = nowy_aktualny_Stan;
+    }
 }
