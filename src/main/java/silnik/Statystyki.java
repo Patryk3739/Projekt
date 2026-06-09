@@ -65,4 +65,24 @@ public class Statystyki {
         }
 
     }
+
+    public int getLiczbaCiezarowek() {
+        return liczbaCiezarowek;
+    }
+
+    public int getLiczbaRowerow() {
+        return liczbaRowerow;
+    }
+
+    public int getLiczbaSamochodow() {
+        return liczbaSamochodow;
+    }
+
+    public int getLiczbaLaczna() {
+        return liczbaLaczna;
+    }
+
+    public int getLiczbaWKorku() {
+        return liczbaWKorku;
+    }
 }
