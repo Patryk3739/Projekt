@@ -1,11 +1,9 @@
 package skrzyzowania;
 import pojazdy.Pojazd;
 
-import java.util.List;
-
 public class Sygnalizacja extends Skrzyzowanie{
-    private stanSwiatel aktualnaFaza = stanSwiatel.wszystkieCzerwone;
-    private stanSwiatel swiatloPoCzerwonym = stanSwiatel.zielonePoziome;
+    private StanSwiatel aktualnaFaza = StanSwiatel.wszystkieCzerwone;
+    private StanSwiatel swiatloPoCzerwonym = StanSwiatel.zielonePoziome;
 
     public Sygnalizacja(int x, int y, int pojemnosc) {
         super(x, y, pojemnosc);
@@ -15,40 +13,31 @@ public class Sygnalizacja extends Skrzyzowanie{
         if(!czyZmiesciSie(p)){
             return false;
         }
-        if (aktualnaFaza == stanSwiatel.wszystkieCzerwone){
+        if (aktualnaFaza == StanSwiatel.wszystkieCzerwone){
             return false;
         }
-        Kierunki skadNadjezdza = null;
-        for (Kierunki k: Kierunki.values()){
-            List<Pojazd> kolejka = getkolejkiKierunkowe().get(k);
-            if (kolejka != null && kolejka.contains(p)){
-                skadNadjezdza = k;
-                break;
-            }
-        }
-        if (skadNadjezdza == null){
-            return true;
-        }
+        Kierunki skadNadjezdza = p.getAktualnyKierunek();
+
         //po czerwonym najpierw startują kierunki pionowe
-        if (aktualnaFaza == stanSwiatel.zielonePionowe) {
+        if (aktualnaFaza == StanSwiatel.zielonePionowe) {
             return skadNadjezdza == Kierunki.Gora || skadNadjezdza == Kierunki.Dol;
         }
-        if (aktualnaFaza == stanSwiatel.zielonePoziome){
+        if (aktualnaFaza == StanSwiatel.zielonePoziome){
             return skadNadjezdza == Kierunki.Lewo || skadNadjezdza == Kierunki.Prawo;
         }
         return false;
     }
     public void zmianaSwiatla() {
-        if (aktualnaFaza == stanSwiatel.wszystkieCzerwone) {
+        if (aktualnaFaza == StanSwiatel.wszystkieCzerwone) {
             // zmieniamy oś na przeciwną
-            if (swiatloPoCzerwonym == stanSwiatel.zielonePoziome) {
-                aktualnaFaza = stanSwiatel.zielonePionowe;
+            if (swiatloPoCzerwonym == StanSwiatel.zielonePoziome) {
+                aktualnaFaza = StanSwiatel.zielonePionowe;
             } else {
-                aktualnaFaza = stanSwiatel.zielonePoziome;
+                aktualnaFaza = StanSwiatel.zielonePoziome;
             }
         } else { // faza wszystkieCzerwone i zapisujemy, jakie światło było przed
             swiatloPoCzerwonym = aktualnaFaza;
-            aktualnaFaza = stanSwiatel.wszystkieCzerwone;
+            aktualnaFaza = StanSwiatel.wszystkieCzerwone;
         }
 
     }

@@ -1,5 +1,5 @@
 package skrzyzowania;
 
-public enum stanSwiatel {
+public enum StanSwiatel {
     zielonePoziome, zielonePionowe, wszystkieCzerwone
 }
