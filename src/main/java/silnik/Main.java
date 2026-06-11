@@ -1,7 +1,6 @@
 package silnik;
 
 import pojazdy.StanPojazdu;
-import skrzyzowania.Skrzyzowanie;
 import pojazdy.Pojazd;
 
 import java.util.ArrayList;
@@ -14,6 +13,10 @@ public class Main {
     private List<Pojazd> listaPojazdow;
     private Mapa mapa;
     private Statystyki statystyki;
+
+    private int licznikZastoju;
+    private final int limitZastoju=5;
+    private final int coIleTurZmianaSwiatla=5;
 
     public Main(int liczbaPojazdowNaStart){
         poczatkowaLiczbaPojazdow=liczbaPojazdowNaStart;
@@ -41,8 +44,9 @@ public class Main {
 
     public void wykonajTure(){
         aktualnaTura++;
-        mapa.aktualizujSwiatla();
-
+        if (aktualnaTura % coIleTurZmianaSwiatla == 0) {
+            mapa.aktualizujSwiatla();
+        }
         for (Pojazd p: listaPojazdow){
             p.jedzNastepnaTure();
         }
@@ -55,11 +59,18 @@ public class Main {
     public boolean czyMozliwyRuch(){
         for (Pojazd p:listaPojazdow){
             if (p.getStanPojazdu() == StanPojazdu.W_ruchu){
+                licznikZastoju=0;
                 return true;
             }
         }
-        System.out.println("Mapa zostala zakorkowana. Koniec symulacji.");
-        return false;
+        licznikZastoju++;
+
+        if (licznikZastoju >= limitZastoju) {
+            System.out.println("Mapa zostala zakorkowana (" + limitZastoju + " tur bezruchu z rzedu). Koniec symulacji.");
+            return false;
+        }
+
+        System.out.println("[OSTRZEZENIE] Wszystkie auta stoja (Tura zastoju: " + licznikZastoju + "/" + limitZastoju + ")");        return true;
     }
 
     public void usunPojazd(){

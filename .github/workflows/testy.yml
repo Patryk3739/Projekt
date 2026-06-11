@@ -1,0 +1,25 @@
+name: Testy, Pokrycie Kodu
+
+on:
+  push:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobranie kodu z repozytorium
+        uses: actions/checkout@v4
+
+      - name: Instalacja Javy (JDK)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Nadanie uprawnien do pliku Gradle
+        run: chmod +x gradlew
+
+      - name: Odpalenie testów i JaCoCo
+        run: ./gradlew test jacocoTestReport
