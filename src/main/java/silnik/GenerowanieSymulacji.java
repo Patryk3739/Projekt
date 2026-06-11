@@ -35,9 +35,9 @@ public class GenerowanieSymulacji {
     private Skrzyzowanie losujSkrzyz(int x, int y){
         int losowanie = random.nextInt(3);
         return switch (losowanie){
-            case 0 -> new Sygnalizacja(x,y);
-            case 1 -> new Rondo(x,y);
-            default -> new Rownorzedne(x,y);
+            case 0 -> new Sygnalizacja(x, y, 20);
+            case 1 -> new Rondo(x, y, 12);
+            default -> new Rownorzedne(x, y, 16);
         };
     }
 

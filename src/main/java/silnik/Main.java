@@ -34,7 +34,7 @@ public class Main {
         mapa = generator.stworzMape(wymiarMapy);
 
         for (int i=0;i<poczatkowaLiczbaPojazdow;i++){
-            Pojazd p = generator.losujPojazd(wymiarMapy,mapa);
+            Pojazd p = generator.losujPojazd(mapa);
             listaPojazdow.add(p);
         }
 
