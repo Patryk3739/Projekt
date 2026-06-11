@@ -33,6 +33,8 @@ public class Main {
         int wymiarMapy = 20;
         mapa = generator.stworzMape(wymiarMapy);
 
+        System.out.println("Wymiary mapy: "+wymiarMapy +", liczba skrzyzowan: " +wymiarMapy*wymiarMapy);
+
         for (int i=0;i<poczatkowaLiczbaPojazdow;i++){
             Pojazd p = generator.losujPojazd(mapa);
             listaPojazdow.add(p);
@@ -69,8 +71,7 @@ public class Main {
             System.out.println("Mapa zostala zakorkowana (" + limitZastoju + " tur bezruchu z rzedu). Koniec symulacji.");
             return false;
         }
-
-        System.out.println("[OSTRZEZENIE] Wszystkie auta stoja (Tura zastoju: " + licznikZastoju + "/" + limitZastoju + ")");        return true;
+        return true;
     }
 
     public void usunPojazd(){
@@ -89,7 +90,7 @@ public class Main {
     }
 
     public void zakonczSymulacje(){
-        System.out.println("Zakonczono symulacje.");
+        System.out.println("Symulacja zostala zakonczona w: "+ aktualnaTura+ " tur.");
     }
 
     public static void main(String[] args) {
