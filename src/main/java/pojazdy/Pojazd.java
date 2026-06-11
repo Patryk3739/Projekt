@@ -8,68 +8,67 @@ import java.util.Random;
 
 public abstract class Pojazd {
     private int rozmiar;
-    private int wspolrzedna_x;
-    private int wspolrzedna_y;
+    private int wspolrzednaX;
+    private int wspolrzednaY;
     private StanPojazdu aktualnyStanPojazdu;
     private Kierunki aktualnyKierunek;
     protected Mapa mapa;
 
-    Random random = new Random();
+    private final Random random = new Random();
+
     public Kierunki getAktualnyKierunek() {
         return this.aktualnyKierunek;
     }
 
-    public Pojazd(int wspolrzedna_x, int wspolrzedna_y, int rozmiar, Mapa mapa){
-        this.wspolrzedna_x = wspolrzedna_x;
-        this.wspolrzedna_y = wspolrzedna_y;
+    public Kierunki gdzieJechac() {
+        Kierunki[] kierunki = Kierunki.values();
+        return kierunki[random.nextInt(kierunki.length)];
+    }
+
+    public Pojazd(int wspolrzednaX, int wspolrzednaY, int rozmiar, Mapa mapa) {
+        this.wspolrzednaX = wspolrzednaX;
+        this.wspolrzednaY = wspolrzednaY;
         this.rozmiar = rozmiar;
         this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
         this.mapa = mapa;
-        int losowy_kierunek = random.nextInt(4);
-        switch(losowy_kierunek){
-            case 0: this.aktualnyKierunek = Kierunki.Gora;
-                break;
-            case 1: this.aktualnyKierunek = Kierunki.Prawo;
-                break;
-            case 2: this.aktualnyKierunek = Kierunki.Dol;
-                break;
-            case 3: this.aktualnyKierunek = Kierunki.Lewo;
-                break;
-        }
+        this.aktualnyKierunek = gdzieJechac();
     }
-    public int getRozmiar(){
+
+    public int getRozmiar() {
         return rozmiar;
     }
 
-    public int getWspolrzedna_x(){
-        return wspolrzedna_x;
+    public int getWspolrzedna_x() {
+        return wspolrzednaX;
     }
-    public int getWspolrzedna_y(){
-        return wspolrzedna_y;
+
+    public int getWspolrzedna_y() {
+        return wspolrzednaY;
     }
 
     private void jedz() {
-        switch(aktualnyKierunek) {
-            case Gora:
-                wspolrzedna_y++;
-                break;
-            case Prawo:
-                wspolrzedna_x++;
-                break;
-            case Dol:
-                wspolrzedna_y--;
-                break;
-            case Lewo:
-                wspolrzedna_x--;
-                break;
+        switch (aktualnyKierunek) {
+            case Gora -> wspolrzednaY--;
+            case Prawo -> wspolrzednaX++;
+            case Dol -> wspolrzednaY++;
+            case Lewo -> wspolrzednaX--;
         }
     }
 
     public void jedzNastepnaTure() {
-        Skrzyzowanie s = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzedna_x, this.wspolrzedna_y);
-        if (s.czyWolne(this)){
-            this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
-            jedz();
+        Skrzyzowanie stareSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
+        stareSkrzyzowanie.opuscSkrzyz(this);
+        this.aktualnyKierunek = gdzieJechac();
+        jedz();
+        if (czyNaMapie()){
+            Skrzyzowanie noweSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
+            if (noweSkrzyzowanie.czyWolne(this)){
+                this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
+            }
+            else{
+                this.aktualnyStanPojazdu = StanPojazdu.W_korku;
+            }
+            noweSkrzyzowanie.wjedzSkrzyz(this);
         }
         else{
             this.aktualnyStanPojazdu = StanPojazdu.W_korku;
@@ -78,8 +77,8 @@ public abstract class Pojazd {
 
     public boolean czyNaMapie() {
         int wymiarMapy = mapa.getWymiar();
-        return (wspolrzedna_x>=0 && wspolrzedna_x< wymiarMapy) &&
-                (wspolrzedna_y >=0 && wspolrzedna_y< wymiarMapy);
+        return (wspolrzednaX >= 0 && wspolrzednaX < wymiarMapy) &&
+                (wspolrzednaY >= 0 && wspolrzednaY < wymiarMapy);
     }
 
     public void setZmianaKierunku(Kierunki zmianaKierunku){

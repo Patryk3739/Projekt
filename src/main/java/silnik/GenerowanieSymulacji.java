@@ -1,22 +1,15 @@
 package silnik;
-import skrzyzowania.Skrzyzowanie;
-import pojazdy.Pojazd;
 import java.util.Random;
-import skrzyzowania.Rondo;
-import skrzyzowania.Rownorzedne;
-import skrzyzowania.Sygnalizacja;
-import pojazdy.Samochod;
-import pojazdy.Rower;
-import pojazdy.Ciezarowka;
+import skrzyzowania.*;
+import pojazdy.*;
 
 public class GenerowanieSymulacji {
         private Random random = new Random();
     public Mapa stworzMape(int wymiary){
         Mapa mapa = new Mapa(wymiary);
-        int wymiaryMapy = mapa.getWymiar();
 
-        for(int x = 0; x<wymiaryMapy; x++){
-            for(int y = 0; y < wymiaryMapy; y++){
+        for(int x = 0; x< mapa.getWymiar(); x++){
+            for(int y = 0; y < mapa.getWymiar(); y++){
                 Skrzyzowanie s = losujSkrzyz(x,y);
                 mapa.wstawSkrzyzowanie(x, y, s);
             }
@@ -24,26 +17,28 @@ public class GenerowanieSymulacji {
         return mapa;
 
     }
-    public Pojazd losujPojazd(int wymiary, Mapa mapa){
-        int start_x = random.nextInt(wymiary);
-        int start_y = random.nextInt(wymiary);
+    public Pojazd losujPojazd(Mapa mapa){
+        int wymiary = mapa.getWymiar();
+        int startX = random.nextInt(wymiary);
+        int startY = random.nextInt(wymiary);
         int losowanie_pojazdu = random.nextInt(3);
 
-        switch(losowanie_pojazdu){
-            case 0: return new Rower(start_x, start_y, mapa);
-            case 1: return new Samochod(start_x, start_y, mapa);
-            case 2: return new Ciezarowka(start_x, start_y, mapa);
-            default: return new Samochod(start_x, start_y, mapa);
-        }
+        Pojazd nowyPojazd = switch(losowanie_pojazdu){
+            case 0 -> new Samochod(startX, startY, mapa);
+            case 1 -> new Rower(startX, startY, mapa);
+            default -> new Ciezarowka(startX, startY, mapa);
+        };
+        Skrzyzowanie s = mapa.pobierzWspolrzedneSkrzyz(startX, startY);
+        s.wjedzSkrzyz(nowyPojazd);
+        return nowyPojazd;
     }
     private Skrzyzowanie losujSkrzyz(int x, int y){
         int losowanie = random.nextInt(3);
-        switch (losowanie){
-            case 0: return new Sygnalizacja(x,y);
-            case 1: return new Rondo(x,y);
-            case 2: return new Rownorzedne(x,y);
-            default: return new Rownorzedne(x,y);
-        }
+        return switch (losowanie){
+            case 0 -> new Sygnalizacja(x,y);
+            case 1 -> new Rondo(x,y);
+            default -> new Rownorzedne(x,y);
+        };
     }
 
 }
