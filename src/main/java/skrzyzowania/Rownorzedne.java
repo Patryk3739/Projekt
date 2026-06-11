@@ -13,24 +13,11 @@ public class Rownorzedne extends Skrzyzowanie {
     }
 
     private boolean regulaPrawejReki(Pojazd p) {
-        Kierunki skadNadjezdza = null;
-        /* przeglądamy wszystkie 4 kolejki(kierunki) na skrzyżowaniu
-         żeby dowiedzieć się, w której kolejce znajduje sie pojazd*/
-        for (Kierunki k : Kierunki.values()) {
-            java.util.List<Pojazd> kolejka = getkolejkiKierunkowe().get(k);
-            if (kolejka != null && kolejka.contains(p)) {
-                skadNadjezdza = k; //jakby tutaj stoi
-                break;
-            }
-        }
-        // jeśli czemuś pojazdu nie ma w kolejkach, pozwól jechać
-        if (skadNadjezdza == null) {
-            return true;
-        }
+        Kierunki skadNadjezdza = p.getAktualnyKierunek();
         //zabezpieczenie: jeśli na wszystkich 4 kolejkach stoi po 1 aucie, jak się zachowuje
         int zajeteKolejki = 0;
         for (Kierunki k : Kierunki.values()) {
-            List<Pojazd> kol = getkolejkiKierunkowe().get(k);
+            List<Pojazd> kol = getKolejkiKierunkowe().get(k);
             if (kol != null && !kol.isEmpty()) {
                 zajeteKolejki++;
             }
@@ -48,7 +35,7 @@ public class Rownorzedne extends Skrzyzowanie {
         };
 
         // sprawdzenie, czy po prawej jest pojazd
-        List<Pojazd> kolejkaZPrawej = getkolejkiKierunkowe().get(prawaStrona);
+        List<Pojazd> kolejkaZPrawej = getKolejkiKierunkowe().get(prawaStrona);
 
         if (kolejkaZPrawej != null && !kolejkaZPrawej.isEmpty()) {
             return false; // ustępuje

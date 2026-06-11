@@ -11,9 +11,9 @@ public abstract class Skrzyzowanie {
     private int pojemnosc;
     private int wspolrzednaX;  //atributy klasy
     private int wspolrzednaY;
-    private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe = new HashMap<>();
+    private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe ;
 
-    public Map<Kierunki, List<Pojazd>> getkolejkiKierunkowe() {
+    public Map<Kierunki, List<Pojazd>> getKolejkiKierunkowe() {
         return this.kolejkiKierunkowe;
     }
 
@@ -53,7 +53,7 @@ public abstract class Skrzyzowanie {
     }
     public void wjedzSkrzyz(Pojazd p) {
         Kierunki kierunek = p.getAktualnyKierunek();
-        List<Pojazd> kolejka = getkolejkiKierunkowe().get(kierunek);
+        List<Pojazd> kolejka = getKolejkiKierunkowe().get(kierunek);
 
         //jeśli jest kolejka, pojazd jest w stanie W_korku
         kolejka.add(p);
@@ -61,18 +61,12 @@ public abstract class Skrzyzowanie {
 
     public void opuscSkrzyz(Pojazd p) {
         Kierunki kierunek = p.getAktualnyKierunek();
-        List<Pojazd> kolejka = getkolejkiKierunkowe().get(kierunek);
+        List<Pojazd> kolejka = getKolejkiKierunkowe().get(kierunek);
 
         // usuwany pojazd z kolejki, bo przejechał
         kolejka.remove(p);
 
 
-        // nowy kierunek na wyjeździe
-        Random rand = new java.util.Random();
-        Kierunki[] kierunki = Kierunki.values();
-        Kierunki nowyKierunek = kierunki[rand.nextInt(kierunki.length)];
 
-        // zmiana trasy
-        p.setZmianaKierunku(nowyKierunek);
     }
 }
