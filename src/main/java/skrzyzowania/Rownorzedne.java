@@ -1,18 +1,19 @@
 package skrzyzowania;
 import pojazdy.Pojazd;
+import java.util.List;
 
 public class Rownorzedne extends Skrzyzowanie {
-    public Rownorzedne(int x, int y) {
-        super(x, y);
+    public Rownorzedne(int x, int y, int pojemnosc) {
+        super(x, y, pojemnosc);
     }
     @Override
-    public Boolean czyWolne(Pojazd p) {
-        return regulaPrawejReki(p);
+    public boolean czyWolne(Pojazd p) {
+
+        return czyZmiesciSie(p) && regulaPrawejReki(p);
     }
 
-    public Boolean regulaPrawejReki(Pojazd p) {
+    private boolean regulaPrawejReki(Pojazd p) {
         Kierunki skadNadjezdza = null;
-
         /* przeglądamy wszystkie 4 kolejki(kierunki) na skrzyżowaniu
          żeby dowiedzieć się, w której kolejce znajduje sie pojazd*/
         for (Kierunki k : Kierunki.values()) {
@@ -22,10 +23,21 @@ public class Rownorzedne extends Skrzyzowanie {
                 break;
             }
         }
-
         // jeśli czemuś pojazdu nie ma w kolejkach, pozwól jechać
         if (skadNadjezdza == null) {
             return true;
+        }
+        //zabezpieczenie: jeśli na wszystkich 4 kolejkach stoi po 1 aucie, jak się zachowuje
+        int zajeteKolejki = 0;
+        for (Kierunki k : Kierunki.values()) {
+            List<Pojazd> kol = getkolejkiKierunkowe().get(k);
+            if (kol != null && !kol.isEmpty()) {
+                zajeteKolejki++;
+            }
+        }
+        if (zajeteKolejki == 4) {
+            // bezwzględne pierwszeństwo kierunkowi Góra na przełamanie korka
+            return skadNadjezdza == Kierunki.Gora;
         }
 
         Kierunki prawaStrona = switch (skadNadjezdza) {
@@ -36,7 +48,7 @@ public class Rownorzedne extends Skrzyzowanie {
         };
 
         // sprawdzenie, czy po prawej jest pojazd
-        java.util.List<Pojazd> kolejkaZPrawej = getkolejkiKierunkowe().get(prawaStrona);
+        List<Pojazd> kolejkaZPrawej = getkolejkiKierunkowe().get(prawaStrona);
 
         if (kolejkaZPrawej != null && !kolejkaZPrawej.isEmpty()) {
             return false; // ustępuje
