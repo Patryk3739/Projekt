@@ -36,7 +36,6 @@ public class Rownorzedne extends Skrzyzowanie {
 
         // sprawdzenie, czy po prawej jest pojazd
         List<Pojazd> kolejkaZPrawej = getKolejkiKierunkowe().get(prawaStrona);
-
         if (kolejkaZPrawej != null && !kolejkaZPrawej.isEmpty()) {
             return false; // ustępuje
         }
