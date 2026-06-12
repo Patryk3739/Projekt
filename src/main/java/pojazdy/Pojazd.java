@@ -14,7 +14,7 @@ public abstract class Pojazd {
     private Kierunki aktualnyKierunek;
     protected Mapa mapa;
 
-    private final Random random = new Random();
+    private static final Random random = new Random();
 
     public Kierunki getAktualnyKierunek() {
         return this.aktualnyKierunek;
@@ -38,11 +38,11 @@ public abstract class Pojazd {
         return rozmiar;
     }
 
-    public int getWspolrzedna_x() {
+    public int getWspolrzednaX() {
         return wspolrzednaX;
     }
 
-    public int getWspolrzedna_y() {
+    public int getWspolrzednaY() {
         return wspolrzednaY;
     }
 
@@ -56,21 +56,27 @@ public abstract class Pojazd {
     }
 
     public void jedzNastepnaTure() {
-        Skrzyzowanie stareSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
-        stareSkrzyzowanie.opuscSkrzyz(this);
-        this.aktualnyKierunek = gdzieJechac();
-        jedz();
-        if (czyNaMapie()){
-            Skrzyzowanie noweSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
-            if (noweSkrzyzowanie.czyWolne(this)){
-                this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
+        if (this.aktualnyStanPojazdu == StanPojazdu.W_ruchu) {
+            Skrzyzowanie stareSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
+            stareSkrzyzowanie.opuscSkrzyz(this);
+            this.aktualnyKierunek = gdzieJechac();
+            jedz();
+            if (czyNaMapie()) {
+                Skrzyzowanie noweSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
+                noweSkrzyzowanie.wjedzSkrzyz(this);
             }
-            else{
-                this.aktualnyStanPojazdu = StanPojazdu.W_korku;
-            }
-            noweSkrzyzowanie.wjedzSkrzyz(this);
         }
-        else{
+        if (czyNaMapie()) {
+          Skrzyzowanie aktualneSkrzyzowanie = mapa.pobierzWspolrzedneSkrzyz(this.wspolrzednaX, this.wspolrzednaY);
+          if (aktualneSkrzyzowanie.czyWolne(this)) {
+              this.aktualnyStanPojazdu = StanPojazdu.W_ruchu;
+          }
+          else {
+              this.aktualnyStanPojazdu = StanPojazdu.W_korku;
+          }
+        }
+        //wyjechal poza mape
+        else {
             this.aktualnyStanPojazdu = StanPojazdu.W_korku;
         }
     }

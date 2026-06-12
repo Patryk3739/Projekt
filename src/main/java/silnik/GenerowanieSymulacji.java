@@ -4,7 +4,7 @@ import skrzyzowania.*;
 import pojazdy.*;
 
 public class GenerowanieSymulacji {
-        private Random random = new Random();
+        private static final Random random = new Random();
     public Mapa stworzMape(int wymiary){
         Mapa mapa = new Mapa(wymiary);
 
@@ -19,16 +19,21 @@ public class GenerowanieSymulacji {
     }
     public Pojazd losujPojazd(Mapa mapa){
         int wymiary = mapa.getWymiar();
-        int startX = random.nextInt(wymiary);
-        int startY = random.nextInt(wymiary);
-        int losowanie_pojazdu = random.nextInt(3);
-
-        Pojazd nowyPojazd = switch(losowanie_pojazdu){
-            case 0 -> new Samochod(startX, startY, mapa);
-            case 1 -> new Rower(startX, startY, mapa);
-            default -> new Ciezarowka(startX, startY, mapa);
-        };
-        Skrzyzowanie s = mapa.pobierzWspolrzedneSkrzyz(startX, startY);
+        int startX;
+        int startY;
+        Skrzyzowanie s;
+        Pojazd nowyPojazd;
+        do {
+            startX = random.nextInt(wymiary);
+            startY = random.nextInt(wymiary);
+            int losowaniePojazdu = random.nextInt(3);
+            nowyPojazd = switch (losowaniePojazdu) {
+                case 0 -> new Samochod(startX, startY, mapa);
+                case 1 -> new Rower(startX, startY, mapa);
+                default -> new Ciezarowka(startX, startY, mapa);
+            };
+            s = mapa.pobierzWspolrzedneSkrzyz(startX, startY);
+        } while (!s.czyZmiesciSie(nowyPojazd));
         s.wjedzSkrzyz(nowyPojazd);
         return nowyPojazd;
     }
@@ -40,5 +45,4 @@ public class GenerowanieSymulacji {
             default -> new Rownorzedne(x, y, 16);
         };
     }
-
 }
