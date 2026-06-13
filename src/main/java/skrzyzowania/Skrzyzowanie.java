@@ -9,7 +9,7 @@ import java.util.Random;
 
 public abstract class Skrzyzowanie {
     private int pojemnosc;
-    private int wspolrzednaX;  //atributy klasy
+    private int wspolrzednaX;  //atrybuty klasy
     private int wspolrzednaY;
     private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe ;
 

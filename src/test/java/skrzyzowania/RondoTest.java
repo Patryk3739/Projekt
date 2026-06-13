@@ -14,15 +14,15 @@ class RondoTest {
     //test nr 1 - czy skrzyżowanie pozwala wjechać, gdy jest puste
     @Test
     public void pozwWjazdGdyPuste() {
-        Pojazd pojazd = new testowyPojazd(1, Kierunki.Gora);
+        Pojazd pojazd = new TestowyPojazd(1, Kierunki.Gora);
         // na pustym rondzie czyWolne() ma zwrócić true
         assertTrue(rondo.czyWolne(pojazd), "Puste rondo powinno pozwolić na wjazd pojazdu.");
     }
     //test nr 2 - czy zabrania wjechać, gdy jest zajęte
     @Test
     public void testCzyZabraniaWjechacGdyJestZajete() {
-        Pojazd duzyPojazd = new testowyPojazd(4, Kierunki.Gora); // zajmuje całe rondo
-        Pojazd kolejnyPojazd = new testowyPojazd(1, Kierunki.Prawo);
+        Pojazd duzyPojazd = new TestowyPojazd(4, Kierunki.Gora); // zajmuje całe rondo
+        Pojazd kolejnyPojazd = new TestowyPojazd(1, Kierunki.Prawo);
 
         // wjeżdżamy dużym pojazdem – rondo pełne
         rondo.wjedzSkrzyz(duzyPojazd);
@@ -34,11 +34,11 @@ class RondoTest {
     @Test
     public void testCzyWpuszczaMniejszyPojazdGdyWiekszyNieWjedzie() {
         // na rondzie o pojemności 4 stoi już pojazd o rozmiarze 2, są 2 wolne miejsca
-        Pojazd pojazdNaRondzie = new testowyPojazd(2, Kierunki.Gora);
+        Pojazd pojazdNaRondzie = new TestowyPojazd(2, Kierunki.Gora);
         rondo.wjedzSkrzyz(pojazdNaRondzie);
 
-        Pojazd ciezarowka = new testowyPojazd(3, Kierunki.Lewo);  // potrzebuje 3 miejsc, nie zmieści się
-        Pojazd rower = new testowyPojazd(1, Kierunki.Prawo);   // potrzebuje 1 miejsca, zmieści się
+        Pojazd ciezarowka = new TestowyPojazd(3, Kierunki.Lewo);  // potrzebuje 3 miejsc, nie zmieści się
+        Pojazd rower = new TestowyPojazd(1, Kierunki.Prawo);   // potrzebuje 1 miejsca, zmieści się
 
         // sprawdzamy ciężarówkę – powinna dostać zakaz wjazdu
         assertFalse(rondo.czyWolne(ciezarowka), "Ciężarówka o rozmiarze 3 nie powinna się zmieścić na rondzie.");
