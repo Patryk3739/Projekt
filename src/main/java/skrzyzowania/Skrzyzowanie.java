@@ -5,13 +5,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public abstract class Skrzyzowanie {
     private int pojemnosc;
     private int wspolrzednaX;  //atrybuty klasy
     private int wspolrzednaY;
     private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe ;
+    public int getWspolrzednaX() {
+        return wspolrzednaX;
+    }
+    public int getWspolrzednaY() {
+        return wspolrzednaY;
+    }
+    public int getPojemnosc() {
+        return this.pojemnosc;
+    }
 
     public Map<Kierunki, List<Pojazd>> getKolejkiKierunkowe() {
         return this.kolejkiKierunkowe;
@@ -27,29 +35,25 @@ public abstract class Skrzyzowanie {
             this.kolejkiKierunkowe.put(k, new ArrayList<>());
         }
     }
-    public int getWspolrzednaX() {
-        return wspolrzednaX;
-    }
-
-    public int getWspolrzednaY() {
-        return wspolrzednaY;
-    }
 
     public abstract boolean czyWolne(Pojazd p);
 
     // sprawdzamy, czy auto zmieści się na skrzyżowaniu na podstawie rozmiarów
     public boolean czyZmiesciSie(Pojazd p) {
         int aktualnieZajeteMiejsce = 0;
+        boolean czyPojJuzJest = false;
         //przeszukujemy każdą szufladę i sumujemy rozmiary aut znajdujących się tam
         for (Kierunki k : Kierunki.values()) {
             List<Pojazd> kolejka = kolejkiKierunkowe.get(k);
-            for (Pojazd auto : kolejka) {
-                aktualnieZajeteMiejsce += auto.getRozmiar();
+            for (Pojazd pojazd : kolejka) {
+                aktualnieZajeteMiejsce += pojazd.getRozmiar();
+                if (pojazd == p) {
+                    czyPojJuzJest = true;
+                }
             }
         }
-
-        // zwracamy czy zajęte miejsce + rozmiar nowego pojazdu nie przekracza pojemności
-        return (aktualnieZajeteMiejsce + p.getRozmiar()) <= this.pojemnosc;
+        // zwracamy czy zajęte miejsce i poprawnie obliczony rozmiar nie przekracza pojemności
+        return (aktualnieZajeteMiejsce + (czyPojJuzJest ? 0 : p.getRozmiar())) <= getPojemnosc();
     }
     public void wjedzSkrzyz(Pojazd p) {
         Kierunki kierunek = p.getAktualnyKierunek();
@@ -65,8 +69,5 @@ public abstract class Skrzyzowanie {
 
         // usuwany pojazd z kolejki, bo przejechał
         kolejka.remove(p);
-
-
-
     }
 }

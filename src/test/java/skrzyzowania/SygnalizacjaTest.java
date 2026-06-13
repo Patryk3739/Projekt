@@ -32,14 +32,14 @@ public class SygnalizacjaTest {
     }
     // test nr 3 -
     @Test
-    public void cykluSwiatel() {
+    public void cyklSwiatel() {
         Pojazd pojazdPion = new TestowyPojazd(1, Kierunki.Dol);
         Pojazd pojazdPoziom = new TestowyPojazd(1, Kierunki.Prawo);
 
         skrzyzowanie.wjedzSkrzyz(pojazdPion);
         skrzyzowanie.wjedzSkrzyz(pojazdPoziom);
 
-        // wszystkieCzerwone -> ZielonePionowe
+        // wszystkieCzerwone -> zielonePionowe
         skrzyzowanie.zmianaSwiatla();
         assertTrue(skrzyzowanie.czyWolne(pojazdPion));
 
