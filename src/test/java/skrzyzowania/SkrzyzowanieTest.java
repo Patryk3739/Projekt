@@ -15,18 +15,18 @@ class SkrzyzowanieTest {
     // test nr 1 - czy skryżowanie blokuje wjazd, jeśli brak miejsca
     @Test
     public void blokWjazdBrakMiejsca() {
-        Pojazd pojazd1 = new testowyPojazd(3, Kierunki.Gora);
-        Pojazd pojazd2 = new testowyPojazd(3, Kierunki.Prawo); // łączny rozmiar 6, a pojemność 5
+        Pojazd pojazd1 = new TestowyPojazd(3, Kierunki.Gora);
+        Pojazd pojazd2 = new TestowyPojazd(3, Kierunki.Prawo); // łączny rozmiar 6, a pojemność 5
 
         // wpuszcza pierwszy pojazd, powinien się zmieścić
         skrzyzowanie.wjedzSkrzyz(pojazd1);
-        assertTrue(skrzyzowanie.czyZmiesciSie(pojazd2) == false, "Skrzyżowanie powinno zablokować pojazd2, bo brakuje miejsca.");
+        assertFalse(skrzyzowanie.czyZmiesciSie(pojazd2) , "Skrzyżowanie powinno zablokować pojazd2, bo brakuje miejsca.");
     }
     // test nr 2 - czy skrzyżowanie prawidłowo ustawia kolejki
     @Test
     public void czyPrawUstKol() {
-        Pojazd autoGora = new testowyPojazd(1, Kierunki.Gora);
-        Pojazd autoPrawo = new testowyPojazd(1, Kierunki.Prawo);
+        Pojazd autoGora = new TestowyPojazd(1, Kierunki.Gora);
+        Pojazd autoPrawo = new TestowyPojazd(1, Kierunki.Prawo);
 
         // pojazdy z różnych kierunków
         skrzyzowanie.wjedzSkrzyz(autoGora);
@@ -42,7 +42,7 @@ class SkrzyzowanieTest {
     //test nr 3 - czy prawidłowo usuwa pojazd z kolejki
     @Test
     public void czyPrawUsuwZKolejki() {
-        Pojazd pojazd = new testowyPojazd(2, Kierunki.Lewo);
+        Pojazd pojazd = new TestowyPojazd(2, Kierunki.Lewo);
         // pojazd wjeżdża
         skrzyzowanie.wjedzSkrzyz(pojazd);
         assertEquals(1, skrzyzowanie.getKolejkiKierunkowe().get(Kierunki.Lewo).size(), "Kolejka powinna mieć 1 pojazd");

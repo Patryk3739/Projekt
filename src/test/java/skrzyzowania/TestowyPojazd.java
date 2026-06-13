@@ -1,11 +1,11 @@
 package skrzyzowania;
 import pojazdy.Pojazd;
 
-public class testowyPojazd extends Pojazd{
+public class TestowyPojazd extends Pojazd{
     private int rozmiar;
     private Kierunki kierunek;
 
-    public testowyPojazd(int rozmiar, Kierunki kierunek) {
+    public TestowyPojazd(int rozmiar, Kierunki kierunek) {
         super(0, 0, rozmiar, null); // współrzędne 0,0 i brak mapy wystarczą do testów
         this.rozmiar = rozmiar;
         this.kierunek = kierunek;
