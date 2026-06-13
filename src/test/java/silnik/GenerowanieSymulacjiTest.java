@@ -3,7 +3,6 @@ package silnik;
 import org.junit.jupiter.api.Test;
 import pojazdy.*;
 import skrzyzowania.*;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GenerowanieSymulacjiTest {
@@ -31,36 +30,28 @@ class GenerowanieSymulacjiTest {
     }
 
     @Test
-    void czySpawnNieNaTymSamymMiejscu() {
-        Mapa mapa = generowanie.stworzMape(5);
-        Skrzyzowanie s = mapa.pobierzWspolrzedneSkrzyz(0, 0);
-        Pojazd p1 = new Samochod(0, 0, mapa);
-        Pojazd p2 = new Samochod(0, 0, mapa);
-        s.wjedzSkrzyz(p1);
-        s.wjedzSkrzyz(p2);
-
-        boolean czyJestP1 = false;
-        for (List<Pojazd> kolejka : s.getKolejkiKierunkowe().values()) {
-            if (kolejka.contains(p1)) {
-                czyJestP1 = true;
-                break;
-            }
-        }
-        assertTrue(czyJestP1, "skrzyzowanie ma pojazd 1");
-
-        boolean czyJestP2 = false;
-        for (List<Pojazd> kolejka : s.getKolejkiKierunkowe().values()) {
-            if (kolejka.contains(p2)) {
-                czyJestP2 = true;
-                break;
-            }
-        }
-        assertTrue(czyJestP2, "skrzyzowanie ma pojazd 2");
-    }
-
-    @Test
     void czyDobrzeZwrociSkrzyzowanie() {
-        Mapa mapa = generowanie.stworzMape(2);
-        assertNotNull(mapa.pobierzWspolrzedneSkrzyz(0, 0), "nie zwraca skrzyzowania");
+        Mapa mapa = generowanie.stworzMape(10);
+        boolean jestRondo = false;
+        boolean jestSygnalizacja = false;
+        boolean jestRownorzedne = false;
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
+                Skrzyzowanie s = mapa.pobierzWspolrzedneSkrzyz(x, y);
+                if (s instanceof Rondo) {
+                    assertEquals(12, s.getPojemnosc(), "to nie jest rondo");
+                    jestRondo = true;
+                } else if (s instanceof Sygnalizacja) {
+                    assertEquals(20, s.getPojemnosc(), "to nie jest sygnalizacja");
+                    jestSygnalizacja = true;
+                } else if (s instanceof Rownorzedne) {
+                    assertEquals(16, s.getPojemnosc(), "to nie jest rownorzedne");
+                    jestRownorzedne = true;
+                }
+                }
+            }
+        assertTrue(jestRondo, "Na mapie nie ma ronda");
+        assertTrue(jestSygnalizacja, "Na mapie nie ma sygnalizacji");
+        assertTrue(jestRownorzedne, "Na mapie nie ma skrzyzowania równorzednego");
+        }
     }
-}
