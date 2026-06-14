@@ -8,22 +8,21 @@ import java.util.List;
 import java.util.Random;
 
 public class Main {
-    private int poczatkowaLiczbaPojazdow;
+    private final int poczatkowaLiczbaPojazdow;
+    private final List<Pojazd> listaPojazdow;
+    private final Statystyki statystyki;
     private int aktualnaTura;
-    private List<Pojazd> listaPojazdow;
     private Mapa mapa;
-    private Statystyki statystyki;
-
     private int licznikZastoju;
     private final int limitZastoju=20;
     private final int coIleTurZmianaSwiatla=5;
 
     public Main(int liczbaPojazdowNaStart){
-        poczatkowaLiczbaPojazdow=liczbaPojazdowNaStart;
-        aktualnaTura=0;
-        mapa=null;
-        statystyki=new Statystyki();
-        listaPojazdow = new ArrayList<>();
+        this.poczatkowaLiczbaPojazdow=liczbaPojazdowNaStart;
+        this.aktualnaTura=0;
+        this.mapa=null;
+        this.statystyki=new Statystyki();
+        this.listaPojazdow = new ArrayList<>();
     }
 
     public void zacznijSymulacje(){
@@ -82,11 +81,10 @@ public class Main {
                 listaPojazdow.remove(i);
             }
         }
-
     }
 
     public boolean czyKoniecSymulacji(){
-    return listaPojazdow.isEmpty();
+        return listaPojazdow.isEmpty();
     }
 
     public void zakonczSymulacje(){
@@ -94,22 +92,22 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+        // Losowanie liczby pojazdow z danego zakresu
         Random losowanie = new Random();
-
         int minPojazdow = 10;
         int maxPojazdow= 50;
-
         int wylosowanaLiczbaPojazdow = losowanie.nextInt(minPojazdow,maxPojazdow+1);
 
+        // Stworzenie stworzenie i rozpoczecie symulacji
         Main symulacja = new Main(wylosowanaLiczbaPojazdow);
-
         symulacja.zacznijSymulacje();
 
+        // Dopoki symulacja moze trwac, wykonywana jest tura
         while(!symulacja.czyKoniecSymulacji() && symulacja.czyMozliwyRuch()){
             symulacja.wykonajTure();
         }
 
+        // Zakonczenie symulacji
         symulacja.zakonczSymulacje();
     }
 }

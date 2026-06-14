@@ -7,15 +7,7 @@ import skrzyzowania.Kierunki;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PojazdTest {
-    private static class SamochodTestowy extends Pojazd {
-        public SamochodTestowy(int x, int y, int rozmiar, Mapa mapa) {
-            super(x, y, rozmiar, mapa);
-        }
-        @Override
-        public Kierunki gdzieJechac() {
-            return Kierunki.Prawo;
-        }
-    }
+
     private Mapa mapa;
 
     @BeforeEach
@@ -26,8 +18,7 @@ class PojazdTest {
 
     @Test
     void czyWykrywaWyjazdPozaMape() {
-        SamochodTestowy samochod = new SamochodTestowy(4, 4, 2, mapa);
-        samochod.setZmianaKierunku(Kierunki.Prawo);
+        TestowyPojazd samochod = new TestowyPojazd(4, 4, 2, mapa);
         samochod.setStanPojazdu(StanPojazdu.W_ruchu);
         samochod.jedzNastepnaTure();
         assertFalse(samochod.czyNaMapie(), "wyjechal z mapy, powinien wypasc");
@@ -35,7 +26,7 @@ class PojazdTest {
 
     @Test
     void czyWieZeMaStac() {
-        SamochodTestowy samochod = new SamochodTestowy(2, 2, 2, mapa);
+        TestowyPojazd samochod = new TestowyPojazd(2, 2, 2, mapa);
         samochod.setStanPojazdu(StanPojazdu.W_korku);
         samochod.setZmianaKierunku(Kierunki.Prawo);
         samochod.jedzNastepnaTure();
@@ -45,8 +36,7 @@ class PojazdTest {
 
     @Test
     void czyZmieniaWspolrzednePoTurze() {
-        SamochodTestowy samochod = new SamochodTestowy(2, 2, 2, mapa);
-        samochod.setZmianaKierunku(Kierunki.Prawo);
+        TestowyPojazd samochod = new TestowyPojazd(2, 2, 2, mapa);
         samochod.setStanPojazdu(StanPojazdu.W_ruchu);
 
         samochod.jedzNastepnaTure();

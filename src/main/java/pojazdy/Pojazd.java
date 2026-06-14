@@ -7,23 +7,13 @@ import silnik.Mapa;
 import java.util.Random;
 
 public abstract class Pojazd {
-    private int rozmiar;
+    private final int rozmiar;
     private int wspolrzednaX;
     private int wspolrzednaY;
     private StanPojazdu aktualnyStanPojazdu;
     private Kierunki aktualnyKierunek;
     protected Mapa mapa;
-
     private static final Random random = new Random();
-
-    public Kierunki getAktualnyKierunek() {
-        return this.aktualnyKierunek;
-    }
-
-    public Kierunki gdzieJechac() {
-        Kierunki[] kierunki = Kierunki.values();
-        return kierunki[random.nextInt(kierunki.length)];
-    }
 
     public Pojazd(int wspolrzednaX, int wspolrzednaY, int rozmiar, Mapa mapa) {
         this.wspolrzednaX = wspolrzednaX;
@@ -34,16 +24,9 @@ public abstract class Pojazd {
         this.aktualnyKierunek = gdzieJechac();
     }
 
-    public int getRozmiar() {
-        return rozmiar;
-    }
-
-    public int getWspolrzednaX() {
-        return wspolrzednaX;
-    }
-
-    public int getWspolrzednaY() {
-        return wspolrzednaY;
+    public Kierunki gdzieJechac() {
+        Kierunki[] kierunki = Kierunki.values();
+        return kierunki[random.nextInt(kierunki.length)];
     }
 
     private void jedz() {
@@ -83,15 +66,31 @@ public abstract class Pojazd {
                 (wspolrzednaY >= 0 && wspolrzednaY < wymiarMapy);
     }
 
-    public void setZmianaKierunku(Kierunki zmianaKierunku){
-        this.aktualnyKierunek = zmianaKierunku;
-    }
-
     public StanPojazdu getStanPojazdu(){
         return this.aktualnyStanPojazdu;
     }
-    
+
+    public Kierunki getAktualnyKierunek() {
+        return this.aktualnyKierunek;
+    }
+
+    public int getRozmiar() {
+        return rozmiar;
+    }
+
+    public int getWspolrzednaX() {
+        return wspolrzednaX;
+    }
+
+    public int getWspolrzednaY() {
+        return wspolrzednaY;
+    }
+
     public void setStanPojazdu(StanPojazdu nowyStan){
         this.aktualnyStanPojazdu = nowyStan;
+    }
+
+    public void setZmianaKierunku(Kierunki zmianaKierunku){
+        this.aktualnyKierunek = zmianaKierunku;
     }
 }

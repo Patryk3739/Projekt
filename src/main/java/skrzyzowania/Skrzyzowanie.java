@@ -7,27 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Skrzyzowanie {
-    private int pojemnosc;
-    private int wspolrzednaX;  //atrybuty klasy
-    private int wspolrzednaY;
-    private Map<Kierunki, List<Pojazd>> kolejkiKierunkowe ;
-    public int getWspolrzednaX() {
-        return wspolrzednaX;
-    }
-    public int getWspolrzednaY() {
-        return wspolrzednaY;
-    }
-    public int getPojemnosc() {
-        return this.pojemnosc;
-    }
+    private final int pojemnosc;
+    private final Map<Kierunki, List<Pojazd>> kolejkiKierunkowe ;
 
-    public Map<Kierunki, List<Pojazd>> getKolejkiKierunkowe() {
-        return this.kolejkiKierunkowe;
-    }
-
-    public Skrzyzowanie(int x, int y, int pojemnosc) {
-        this.wspolrzednaX = x;
-        this.wspolrzednaY = y;
+    public Skrzyzowanie(int pojemnosc) {
         this.pojemnosc = pojemnosc;
         this.kolejkiKierunkowe = new HashMap<>();
 
@@ -70,4 +53,13 @@ public abstract class Skrzyzowanie {
         // usuwany pojazd z kolejki, bo przejechał
         kolejka.remove(p);
     }
+
+    public int getPojemnosc() {
+        return this.pojemnosc;
+    }
+
+    public Map<Kierunki, List<Pojazd>> getKolejkiKierunkowe() {
+        return this.kolejkiKierunkowe;
+    }
+
 }

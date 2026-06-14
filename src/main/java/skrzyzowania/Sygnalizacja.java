@@ -5,14 +5,15 @@ public class Sygnalizacja extends Skrzyzowanie{
     private StanSwiatel aktualnaFaza = StanSwiatel.wszystkieCzerwone;
     private StanSwiatel swiatloPoCzerwonym = StanSwiatel.zielonePoziome;
 
-    public Sygnalizacja(int x, int y, int pojemnosc) {
-        super(x, y, pojemnosc);
+    public Sygnalizacja(int pojemnosc) {
+        super(pojemnosc);
     }
     @Override
     public boolean czyWolne(Pojazd p) {
         if(!czyZmiesciSie(p)){
             return false;
         }
+
         if (aktualnaFaza == StanSwiatel.wszystkieCzerwone){
             return false;
         }

@@ -4,16 +4,12 @@ import skrzyzowania.Skrzyzowanie;
 import skrzyzowania.Sygnalizacja;
 
 public class Mapa {
-    private int wymiar;
-    private Skrzyzowanie[][] mapa;
+    private final int wymiar;
+    private final Skrzyzowanie[][] mapa;
 
     public Mapa(int wymiar){
         this.wymiar=wymiar;
-        mapa = new Skrzyzowanie[wymiar][wymiar];
-    }
-
-    public Skrzyzowanie pobierzWspolrzedneSkrzyz(int x, int y){
-        return mapa[x][y];
+        this.mapa = new Skrzyzowanie[wymiar][wymiar];
     }
 
     public void aktualizujSwiatla(){
@@ -26,14 +22,17 @@ public class Mapa {
                 }
             }
         }
-
     }
 
     public int getWymiar() {
         return wymiar;
     }
 
+    public Skrzyzowanie pobierzWspolrzedneSkrzyz(int x, int y){
+        return mapa[x][y];
+    }
+
     public void wstawSkrzyzowanie(int x, int y, Skrzyzowanie s){
         mapa[x][y] = s;
-    };
+    }
 }

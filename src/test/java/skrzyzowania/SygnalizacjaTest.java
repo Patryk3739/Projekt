@@ -10,7 +10,7 @@ public class SygnalizacjaTest {
     @BeforeEach
     public void setUp() {
         // tworzą się skryżowanie z sygnalizacją o pojemności 4 na pozycji 0,0
-        skrzyzowanie = new Sygnalizacja(0, 0, 4);
+        skrzyzowanie = new Sygnalizacja(4);
     }
     // test nr 1,2 - przepuszczanie na zielonym, zatrzymanie na czerwonym
     @Test

@@ -3,12 +3,11 @@ import pojazdy.Pojazd;
 import java.util.List;
 
 public class Rownorzedne extends Skrzyzowanie {
-    public Rownorzedne(int x, int y, int pojemnosc) {
-        super(x, y, pojemnosc);
+    public Rownorzedne(int pojemnosc) {
+        super(pojemnosc);
     }
     @Override
     public boolean czyWolne(Pojazd p) {
-
         return czyZmiesciSie(p) && regulaPrawejReki(p);
     }
 
