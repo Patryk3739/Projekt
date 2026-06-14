@@ -75,10 +75,6 @@ public abstract class Pojazd {
               this.aktualnyStanPojazdu = StanPojazdu.W_korku;
           }
         }
-        //wyjechal poza mape
-        else {
-            this.aktualnyStanPojazdu = StanPojazdu.W_korku;
-        }
     }
 
     public boolean czyNaMapie() {
