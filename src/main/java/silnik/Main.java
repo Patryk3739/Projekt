@@ -15,7 +15,7 @@ public class Main {
     private Statystyki statystyki;
 
     private int licznikZastoju;
-    private final int limitZastoju=5;
+    private final int limitZastoju=20;
     private final int coIleTurZmianaSwiatla=5;
 
     public Main(int liczbaPojazdowNaStart){
