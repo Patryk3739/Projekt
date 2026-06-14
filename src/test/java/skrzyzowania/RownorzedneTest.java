@@ -9,7 +9,7 @@ public class RownorzedneTest {
     @BeforeEach
     public void setUp() {
         // tworzy się skrzyżowanie równorzędne o pojemności 4 na pozycji 0,0
-        skrzyzowanie = new Rownorzedne(0, 0, 4);
+        skrzyzowanie = new Rownorzedne(4);
     }
     //test nr 1 - test wolnej drogi
     @Test

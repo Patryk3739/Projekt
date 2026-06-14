@@ -9,7 +9,7 @@ class RondoTest {
     @BeforeEach
     public void setUp() {
         // tworzy się rondo o pojemności np. 4
-        rondo = new Rondo(0, 0, 4);
+        rondo = new Rondo(4);
     }
     //test nr 1 - czy skrzyżowanie pozwala wjechać, gdy jest puste
     @Test

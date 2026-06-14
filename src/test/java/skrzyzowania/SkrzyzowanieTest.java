@@ -9,8 +9,8 @@ class SkrzyzowanieTest {
 
     @BeforeEach
     public void setUp() {
-        //przed każdym testem tworzy się rondo o pojemności 5 na pozycji 0,0
-        skrzyzowanie = new Rondo(0, 0, 5);
+        //przed każdym testem tworzy się rondo o pojemności 5
+        skrzyzowanie = new Rondo(5);
     }
     // test nr 1 - czy skryżowanie blokuje wjazd, jeśli brak miejsca
     @Test

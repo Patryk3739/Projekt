@@ -4,7 +4,9 @@ import skrzyzowania.*;
 import pojazdy.*;
 
 public class GenerowanieSymulacji {
+
         private static final Random random = new Random();
+
     public Mapa stworzMape(int wymiary){
         Mapa mapa = new Mapa(wymiary);
 
@@ -15,8 +17,8 @@ public class GenerowanieSymulacji {
             }
         }
         return mapa;
-
     }
+
     public Pojazd losujPojazd(Mapa mapa){
         int wymiary = mapa.getWymiar();
         int startX;
@@ -40,9 +42,9 @@ public class GenerowanieSymulacji {
     private Skrzyzowanie losujSkrzyz(int x, int y){
         int losowanie = random.nextInt(3);
         return switch (losowanie){
-            case 0 -> new Sygnalizacja(x, y, 20);
-            case 1 -> new Rondo(x, y, 12);
-            default -> new Rownorzedne(x, y, 16);
+            case 0 -> new Sygnalizacja(20);
+            case 1 -> new Rondo(12);
+            default -> new Rownorzedne(16);
         };
     }
 }
