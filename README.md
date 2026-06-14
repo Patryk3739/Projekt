@@ -2,9 +2,9 @@
 
 ![Java](https://img.shields.io/badge/Java-21-orange) 
 ![JUnit](https://img.shields.io/badge/JUnit-5-green) 
-![Gradle](https://img.shields.io/badge/Gradle-Build-blue)
+![Gradle](https://img.shields.io/badge/Build-Gradle-blue)
 
-W pełni obiektowy silnik symulacji ruchu drogowego napisany w Javie. Projekt modeluje zachowania pojazdów na siatce miejskiej (mapie), uwzględniając różne typy skrzyżowań, maszyny stanów oraz zasady fizyki ruchu.
+Silnik symulacji ruchu drogowego napisany w Javie. Projekt modeluje zachowania pojazdów na siatce miejskiej (mapie), uwzględniając różne typy skrzyżowań, pojazdów, maszyny stanów oraz zasady fizyki ruchu.
 
 ## ⚙️ Kluczowe mechaniki
 
@@ -24,3 +24,4 @@ Aby skompilować i odpalić główną pętlę symulacji, wpisz w terminalu:
 ### 2. Uruchomienie testów i raportu JaCoCo
 Aby odpalić wszystkie testy jednostkowe i wygenerować raport pokrycia kodu:
 ```./gradlew clean test jacocoTestReport```
+Raport HTML testów pokrycia znajduje się w: ```build/reports/jacoco/test/html/index.html```
