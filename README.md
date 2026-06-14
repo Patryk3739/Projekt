@@ -15,12 +15,12 @@ W pełni obiektowy silnik symulacji ruchu drogowego napisany w Javie. Projekt mo
 * **Czysta Architektura:** Projekt pokryty testami jednostkowymi (JUnit 5) z weryfikacją pokrycia kodu (JaCoCo).
 
 ## 🚀 Szybki start (Quick Start)
-Projekt wykorzystuje system budowania **Gradle**. Aby go uruchomić, nie potrzebujesz dodatkowej konfiguracji IDE. Wystarczy użyć wbudowanego wrappera z poziomu terminala.
+Projekt wykorzystuje system budowania **Gradle**. Aby go uruchomić, wystarczy użyć wbudowanego wrappera z poziomu terminala.
 
 ### 1. Uruchomienie symulacji
 Aby skompilować i odpalić główną pętlę symulacji, wpisz w terminalu:
-```bash ./gradlew run```
+```./gradlew run```
 
 ### 2. Uruchomienie testów i raportu JaCoCo
 Aby odpalić wszystkie testy jednostkowe i wygenerować raport pokrycia kodu:
-```bash ./gradlew clean test jacocoTestReport```
+```./gradlew clean test jacocoTestReport```
