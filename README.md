@@ -6,7 +6,7 @@
 
 Silnik symulacji ruchu drogowego napisany w Javie. Projekt modeluje zachowania pojazdów na siatce miejskiej (mapie), uwzględniając różne typy skrzyżowań, pojazdów, maszyny stanów oraz zasady fizyki ruchu.
 
-## ⚙️ Kluczowe mechaniki
+## Kluczowe mechaniki
 
 * **Inteligentne Skrzyżowania:** Obsługa skrzyżowań równorzędnych (z wbudowanym bezpiecznikiem zapobiegającym zakleszczeniom) oraz rond.
 * **Maszyna Stanów Sygnalizacji:** Cykle świetlne z wbudowanym buforem bezpieczeństwa na opuszczenie skrzyżowania, zapobiegające kolizjom.
@@ -14,14 +14,14 @@ Silnik symulacji ruchu drogowego napisany w Javie. Projekt modeluje zachowania p
 * **Analityka i Raportowanie:** Zbieranie danych o ruchu w czasie rzeczywistym i automatyczny eksport wyników symulacji do pliku `.csv`.
 * **Czysta Architektura:** Projekt pokryty testami jednostkowymi (JUnit 5) z weryfikacją pokrycia kodu (JaCoCo).
 
-## 🚀 Szybki start (Quick Start)
+## Szybki start (Quick Start)
 Projekt wykorzystuje system budowania **Gradle**. Aby go uruchomić, wystarczy użyć wbudowanego wrappera z poziomu terminala.
 
-### 1. Uruchomienie symulacji
+### Uruchomienie symulacji
 Aby skompilować i odpalić główną pętlę symulacji, wpisz w terminalu:
 ```./gradlew run```
 
-### 2. Uruchomienie testów i raportu JaCoCo
+### Uruchomienie testów i raportu JaCoCo
 Aby odpalić wszystkie testy jednostkowe i wygenerować raport pokrycia kodu:
 ```./gradlew clean test jacocoTestReport```
 Raport HTML testów pokrycia znajduje się w: ```build/reports/jacoco/test/html/index.html```
