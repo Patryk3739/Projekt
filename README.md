@@ -1,4 +1,4 @@
-# 🚦 Symulacja Ruchu Drogowego
+# Symulacja Ruchu Drogowego
 
 ![Java](https://img.shields.io/badge/Java-21-orange) 
 ![JUnit](https://img.shields.io/badge/JUnit-5-green) 
