@@ -19,8 +19,8 @@ Projekt wykorzystuje system budowania **Gradle**. Aby go uruchomić, nie potrzeb
 
 ### 1. Uruchomienie symulacji
 Aby skompilować i odpalić główną pętlę symulacji, wpisz w terminalu:
-''' ./gradlew run
+'''bash ./gradlew run
 
 ### 2. Uruchomienie testów i raportu JaCoCo
 Aby odpalić wszystkie testy jednostkowe i wygenerować raport pokrycia kodu:
-''' ./gradlew clean test jacocoTestReport
+'''bash ./gradlew clean test jacocoTestReport
