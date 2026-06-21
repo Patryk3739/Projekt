@@ -14,7 +14,7 @@ Silnik symulacji ruchu drogowego napisany w Javie. Projekt modeluje zachowania p
 * **Analityka i Raportowanie:** Zbieranie danych o ruchu w czasie rzeczywistym i automatyczny eksport wyników symulacji do pliku `.csv`.
 * **Czysta Architektura:** Projekt pokryty testami jednostkowymi (JUnit 5) z weryfikacją pokrycia kodu (JaCoCo).
 
-## Szybki start (Quick Start)
+## Szybki start 
 Projekt wykorzystuje system budowania **Gradle**. Aby go uruchomić, wystarczy użyć wbudowanego wrappera z poziomu terminala.
 
 ### Uruchomienie symulacji
